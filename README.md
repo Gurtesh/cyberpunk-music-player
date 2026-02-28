@@ -113,6 +113,8 @@ If you'd like to support my studies and future projects, consider buying me a co
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/PixelNetrunner)
 
+You can also check out my other projects and pre‑built software on [itch.io](https://pixelnetrunner.itch.io/).
+
 Every contribution helps me continue developing open‑source software while studying.
 
 ---
