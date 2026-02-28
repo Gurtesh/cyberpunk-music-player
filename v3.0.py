@@ -21,7 +21,7 @@ from PyQt5.QtGui import (QPixmap, QFont, QPainter, QPainterPath, QIcon, QColor,
 import dbus
 import requests
 from urllib.parse import quote
-# Fix for the Pillow warning - use a try/except block
+
 try:
     from PIL.ImageQt import ImageQt
 except ImportError:
@@ -47,10 +47,8 @@ class BackgroundGlitchEffect(QLabel):
         if self.parent():
             parent_size = self.parent().size()
             self.setGeometry(0, 0, parent_size.width(), parent_size.height())
-            print(f"Background glitch effect sized to: {parent_size.width()}x{parent_size.height()}")
         
     def start_glitch(self):
-        print("Starting BACKGROUND glitch effect...")
         self.glitch_timer.start(120)
         
     def stop_glitch(self):
@@ -109,7 +107,7 @@ class BackgroundGlitchEffect(QLabel):
         painter.end()
         self.setPixmap(pixmap)
 
-# --- ### FIXED: COMPACT WEATHER WIDGET WITH BETTER POSITIONING ### ---
+# --- ### COMPACT WEATHER WIDGET ### ---
 class CompactWeatherWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -141,10 +139,8 @@ class CompactWeatherWidget(QWidget):
                     "temp": f"{random.choice(temps)}°C",
                     "desc": random.choice(descriptions)
                 }
-            print(f"Weather updated: {self.weather_data}")
             self.update()
         except Exception as e:
-            print(f"Weather fetch error: {e}")
             self.weather_data = {"temp": "--", "desc": "Offline"}
             self.update()
     
@@ -185,7 +181,7 @@ class CompactWeatherWidget(QWidget):
         desc_text = self.weather_data["desc"][:6]  # Very short text
         painter.drawText(desc_rect, Qt.AlignCenter, desc_text)
 
-# --- ### FIXED: SYSTEM STATS WIDGET WITH BETTER POSITIONING ### ---
+# --- ### SYSTEM STATS WIDGET ### ---
 class SystemStatsWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -278,7 +274,6 @@ class SystemStatsWidget(QWidget):
         except Exception as e:
             self.stats_data = {"cpu": "ERR", "ram": "ERR", "temp": "ERR"}
         
-        print(f"System stats updated: {self.stats_data}")
         self.update()
     
     def paintEvent(self, event):
@@ -464,7 +459,7 @@ class VolumeBar(QWidget):
         self.set_volume(volume)
         self.volumeChanged.emit(int(self._volume))
 
-# --- ### MUSIC DETECTOR (Keeping your robust original) ### ---
+# --- ### MUSIC DETECTOR (Playerctl & MPRIS2 Integration) ### ---
 class MusicDetector(QThread):
     music_updated = pyqtSignal(dict)
     
@@ -646,7 +641,7 @@ class MusicDetector(QThread):
             'volume': 50
         }
 
-# --- ### FIXED: MAIN PLAYER CLASS WITH BETTER SPACING ### ---
+# --- ### MAIN PLAYER CLASS ### ---
 class CyberpunkMusicPlayer(QWidget):
     def __init__(self):
         super().__init__()
@@ -661,7 +656,6 @@ class CyberpunkMusicPlayer(QWidget):
         self.setup_music_detector()
         
     def init_ui(self):
-        print("Initializing FIXED Cyberpunk Music Player with proper spacing...")
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
         self.showFullScreen()
         
@@ -676,21 +670,19 @@ class CyberpunkMusicPlayer(QWidget):
         self.glitch_effect.resize_to_parent()
         self.glitch_effect.start_glitch()
         
-        # FIXED: Weather widget positioned to avoid overlap with seconds
+        # Weather widget positioned to avoid overlap with seconds
         self.weather_widget = CompactWeatherWidget(self)
         weather_x = self.width() - 95  # Further left from edge
         weather_y = 120  # Lower to avoid time overlap
         self.weather_widget.setGeometry(weather_x, weather_y, 80, 50)
         self.weather_widget.show()
-        print(f"Weather widget positioned at ({weather_x}, {weather_y})")
         
-        # FIXED: System stats widget positioned to avoid overlap with controls
+        # System stats widget positioned to avoid overlap with controls
         self.system_stats = SystemStatsWidget(self)
         stats_x = 15  # Close to left edge
         stats_y = self.height() - 85  # Higher to avoid bottom edge
         self.system_stats.setGeometry(stats_x, stats_y, 100, 65)
         self.system_stats.show()
-        print(f"System stats widget positioned at ({stats_x}, {stats_y})")
         
         # Main UI styling
         self.setStyleSheet("""
@@ -762,7 +754,7 @@ class CyberpunkMusicPlayer(QWidget):
         progress_layout.addWidget(self.circular_progress)
         main_layout.addLayout(progress_layout)
         
-        # FIXED: Track info with smaller fonts to avoid overlap
+        # Track info with smaller fonts to avoid overlap
         self.track_title = QLabel("🎵 Detecting music...")
         title_font = QFont("Arial", 18, QFont.Bold)  # Much smaller font
         self.track_title.setFont(title_font)
@@ -927,10 +919,8 @@ class CyberpunkMusicPlayer(QWidget):
             if self.current_track.get('length', 0) > 0:
                 position = percentage * self.current_track['length']
                 subprocess.run(['playerctl', 'position', str(position)], check=True, timeout=2)
-                print(f"Seeking to {percentage*100:.1f}% ({position:.1f}s)")
         except Exception as e:
-            print(f"Seek error: {e}")
-        
+            pass
     def update_music_info(self, track_info):
         self.current_track = track_info
         
@@ -1168,7 +1158,7 @@ class CyberpunkMusicPlayer(QWidget):
             self.glitch_effect.resize_to_parent()
             self.glitch_effect.show()
         
-        # FIXED: Better positioning to avoid overlaps
+        # Better positioning to avoid overlaps
         if hasattr(self, 'weather_widget'):
             weather_x = self.width() - 95
             weather_y = 120
@@ -1201,21 +1191,13 @@ class CyberpunkMusicPlayer(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    app.setApplicationName("FIXED Cyberpunk Music Player - No Overlaps")
-    app.setApplicationVersion("4.1")
+    app.setApplicationName("Cyberpunk Music Player - Linux Edition")
+    app.setApplicationVersion("3.0")
     
     player = CyberpunkMusicPlayer()
     player.show()
     
-    print("🎵 FIXED Cyberpunk Music Player v4.1 - No Overlaps!")
-    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("🔧 OVERLAP FIXES Applied:")
-    print("• 📦 Weather widget: Smaller (80x50) and repositioned")
-    print("• 📊 System stats: Smaller (100x65) and repositioned")
-    print("• 📝 Title/Artist: Smaller fonts (18px/13px) to prevent overlap")
-    print("• ⏰ Time display: Smaller fonts (40px/18px) for better spacing")
-    print("• 🎯 Better margins and spacing throughout")
-    print("• 🚫 No more overlapping widgets!")
+    print("🎵 Cyberpunk Music Player v3.0")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("Features:")
     print("• 💻 System stats: CPU, RAM, Temp (bottom-left)")
