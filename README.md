@@ -36,7 +36,7 @@ All dependencies are listed in `requirements.txt`.
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/cyberpunk-music-player.git
+   git clone https://github.com/Gurtesh/cyberpunk-music-player.git
    cd cyberpunk-music-player
    ```
 
