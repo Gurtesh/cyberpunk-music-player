@@ -109,6 +109,12 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 
 Contributions are welcome! Please open an issue or submit a pull request.
 
+If you'd like to support my studies and future projects, consider buying me a coffee:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/PixelNetrunner)
+
+Every contribution helps me continue developing open‑source software while studying.
+
 ---
 
 *Enjoy the music and the glow of neon!*
