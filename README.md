@@ -2,7 +2,9 @@
 
 A sleek, cyberpunk-themed music player UI built with PyQt5 for Raspberry Pi 4B, featuring system monitoring, weather display, and interactive controls. Designed to run on a Raspberry Pi with a DAC (such as Moondrop Dawn Pro) for high-resolution audio playback.
 
-![Demo Screenshot](https://via.placeholder.com/800x450?text=Cyberpunk+Music+Player)
+![Demo Screenshot](screenshots/Screenshot%202026-02-28%20161919.png)
+
+![Second Screenshot](screenshots/Screenshot%202026-02-28%20162057.png)
 
 ## Features
 
